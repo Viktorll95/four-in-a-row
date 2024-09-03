@@ -1,4 +1,6 @@
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
 }
@@ -19,5 +21,31 @@ body {
 
 h1 {
   font-size: 5vh;
+  margin: 2.5vh;
   font-family: "Courier New", Courier, monospace;
+}
+
+#board {
+  padding-top: 10vmin;
+  width: 70vmin;
+  height: 60vmin;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  /* padding: 10px; FIXME: Add padding later (prob in vmin or something that changes dep on screen size) */
+}
+
+.cell {
+  border: 1px dotted white;
+  display: flex;
+}
+
+.piece {
+  border-radius: 50%;
+  background-color: red;
+  flex-grow: 1;
+}
+
+.piece[data-placed="false"] {
+  transform: translateY(-10vmin);
 }
