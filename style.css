@@ -6,6 +6,7 @@
 }
 
 html {
+  background-color: gray;
   background-image: url("./images/background_wood.avif");
   background-size: cover;
   background-repeat: no-repeat;
@@ -26,10 +27,11 @@ h1 {
 }
 
 #board {
-  padding-top: 10vmin;
-  width: 70vmin;
-  height: 60vmin;
+  margin-top: 11vmin;
+  width: 77vmin;
+  height: 66vmin;
   display: grid;
+  background-color: aquamarine;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   /* padding: 10px; FIXME: Add padding later (prob in vmin or something that changes dep on screen size) */
@@ -47,5 +49,5 @@ h1 {
 }
 
 .piece[data-placed="false"] {
-  transform: translateY(-10vmin);
+  transform: translateY(-11vmin);
 }
