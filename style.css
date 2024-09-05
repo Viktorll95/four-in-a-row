@@ -44,8 +44,15 @@ h1 {
 
 .piece {
   border-radius: 50%;
-  background-color: red;
   flex-grow: 1;
+}
+
+.piece[data-player="1"] {
+  background-color: red;
+}
+
+.piece[data-player="2"] {
+  background-color: yellow;
 }
 
 .piece[data-placed="false"] {
