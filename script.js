@@ -18,10 +18,13 @@ function hasPlayerWon(playerTurn, pieces) {
   for (let i = 0; i < pieces.length; i++) {
     // check horizontal win starting at index
     if (i % 7 < 4) {
-      if((pieces(i)===playerTurn) &&
-      (pieces(i+1)===playerTurn) &&
-      (pieces(i+2)===playerTurn) &&
-      (pieces(i+3)===playerTurn))
+      if (
+        pieces[i] === playerTurn &&
+        pieces[i + 1] === playerTurn &&
+        pieces[i + 2] === playerTurn &&
+        pieces[i + 3] === playerTurn
+      ) {
+      }
     }
     // Check vertical win starting at index
     // Check diagonal win starting at index
