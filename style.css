@@ -6,8 +6,8 @@
 }
 
 html {
-  background-color: gray;
-  background-image: url("./images/background_wood.avif");
+  background-color: grey;
+  /* background-image: url(""); */
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -30,11 +30,10 @@ h1 {
   margin-top: 11vmin;
   width: 77vmin;
   height: 66vmin;
-  display: grid;
   background-color: aquamarine;
+  display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  /* padding: 10px; FIXME: Add padding later (prob in vmin or something that changes dep on screen size) */
 }
 
 .cell {
@@ -44,17 +43,10 @@ h1 {
 
 .piece {
   border-radius: 50%;
+  background-color: red;
   flex-grow: 1;
 }
 
-.piece[data-player="1"] {
-  background-color: red;
-}
-
-.piece[data-player="2"] {
-  background-color: yellow;
-}
-
 .piece[data-placed="false"] {
-  transform: translateY(-11vmin);
+  transform: translateY(-12vmin);
 }
