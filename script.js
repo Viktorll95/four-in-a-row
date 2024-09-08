@@ -16,6 +16,7 @@ const pieces = [
 
 let playerTurn = RED_TURN; // 1 - red, 2 - yellow
 let hoverColumn = -1;
+let animating = false;
 
 for (let i = 0; i < 42; i++) {
   let cell = document.createElement("div");
@@ -27,7 +28,9 @@ for (let i = 0; i < 42; i++) {
   };
 
   cell.onclick = () => {
-    onColumnClicked(i % 7);
+    if (!animating) {
+      onColumnClicked(i % 7);
+    }
   };
 }
 
@@ -46,6 +49,46 @@ function onColumnClicked(column) {
   piece.dataset.player = playerTurn;
   cell.appendChild(piece);
 
+  let unplacedPiece = document.querySelector("[data-placed='false']");
+  let unplacedY = unplacedPiece.getBoundingClientRect().y;
+  let placedY = piece.getBoundingClientRect().y;
+  let yDiff = unplacedY - placedY;
+
+  animating = true;
+  removeUnplacedPiece();
+  let animation = piece.animate(
+    [
+      { transform: `translateY(${yDiff}px)`, offset: 0 },
+      { transform: `translateY(0px)`, offset: 0.8 },
+      { transform: `translateY(${yDiff * 0.075}px)`, offset: 0.9 },
+      { transform: `translateY(0px)`, offset: 1 },
+    ],
+    {
+      duration: 300,
+      easing: "linear",
+      iterations: 1,
+    }
+  );
+
+  animation.addEventListener("finish", checkGameWinOrDraw);
+}
+
+function checkGameWinOrDraw() {
+  animating = false;
+
+  // check if game is draw
+  if (!pieces.includes(0)) {
+    console.log("Game is a draw");
+  }
+
+  // check for horisontal win
+
+  // check for vertical win
+
+  // check for diagonal win
+
+  // check for other diagonal win
+
   playerTurn === RED_TURN
     ? (playerTurn = YELLOW_TURN)
     : (playerTurn = RED_TURN);
@@ -55,19 +98,25 @@ function onColumnClicked(column) {
 }
 
 function updateHover() {
+  removeUnplacedPiece();
+
+  if (pieces[hoverColumn] === 0) {
+    // add piece
+    let cell = board.children[hoverColumn];
+    let piece = document.createElement("div");
+    piece.className = "piece";
+    piece.dataset.placed = false;
+    piece.dataset.player = playerTurn;
+    cell.appendChild(piece);
+  }
+}
+
+function removeUnplacedPiece() {
   // remove existing unplaces piece
   let unplacedPiece = document.querySelector("[data-placed='false']");
   if (unplacedPiece) {
     unplacedPiece.parentElement.removeChild(unplacedPiece);
   }
-
-  // add piece
-  let cell = board.children[hoverColumn];
-  let piece = document.createElement("div");
-  piece.className = "piece";
-  piece.dataset.placed = false;
-  piece.dataset.player = playerTurn;
-  cell.appendChild(piece);
 }
 
 function onMouseEnteredColumn(column) {
