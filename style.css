@@ -58,3 +58,7 @@ h1 {
 .piece[data-placed="false"] {
   transform: translateY(-12vmin);
 }
+
+.shine {
+  background-color: white;
+}

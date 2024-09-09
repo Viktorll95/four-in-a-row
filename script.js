@@ -14,6 +14,60 @@ const pieces = [
   0, 0, 0, 0, 0, 0, 0,
 ];
 
+function hasPlayerWon(playerTurn, pieces) {
+  for (let i = 0; i < 42; i++) {
+    // check for horisontal win
+    if (i % 7 < 4) {
+      if (
+        pieces[i] === playerTurn &&
+        pieces[i + 1] === playerTurn &&
+        pieces[i + 2] === playerTurn &&
+        pieces[i + 3] === playerTurn
+      ) {
+        // Later, this will be used to style the winnning pieces (pieces that makes four in a row):
+        // board.children[i].children[0].style.backgroundColor = "white";
+        // board.children[i + 1].children[0].style.backgroundColor = "white";
+        // board.children[i + 2].children[0].style.backgroundColor = "white";
+        // board.children[i + 3].children[0].style.backgroundColor = "white";
+        return true;
+      }
+    }
+    // check for vertical win
+    if (i < 21) {
+      if (
+        pieces[i] === playerTurn &&
+        pieces[i + 7] === playerTurn &&
+        pieces[i + 14] === playerTurn &&
+        pieces[i + 21] === playerTurn
+      ) {
+        return true;
+      }
+    }
+    // check for diagonal win \
+    if (i % 7 < 4 && i < 21) {
+      if (
+        pieces[i] === playerTurn &&
+        pieces[i + 8] === playerTurn &&
+        pieces[i + 16] === playerTurn &&
+        pieces[i + 24] === playerTurn
+      ) {
+        return true;
+      }
+    }
+    // check for other diagonal win /
+    if (i % 7 < 4 && i > 20 && i < 42) {
+      if (
+        pieces[i] === playerTurn &&
+        pieces[i - 6] === playerTurn &&
+        pieces[i - 12] === playerTurn &&
+        pieces[i - 18] === playerTurn
+      ) {
+        return true;
+      }
+    }
+  }
+}
+
 let playerTurn = RED_TURN; // 1 - red, 2 - yellow
 let hoverColumn = -1;
 let animating = false;
@@ -73,21 +127,30 @@ function onColumnClicked(column) {
   animation.addEventListener("finish", checkGameWinOrDraw);
 }
 
+function removeAllPieces() {
+  // Select all "piece" elements inside "cell" elements
+  const pieces = document.querySelectorAll(".cell .piece");
+  // Loop through each "piece" and remove it
+  pieces.forEach((piece) => piece.remove());
+}
+
 function checkGameWinOrDraw() {
   animating = false;
 
   // check if game is draw
   if (!pieces.includes(0)) {
-    console.log("Game is a draw");
+    // Game is a draw
+    confirm("Game is a draw");
+
+    removeAllPieces();
   }
 
-  // check for horisontal win
+  if (hasPlayerWon(playerTurn, pieces)) {
+    // Current player has won
+    confirm(`${playerTurn === RED_TURN ? "Red" : "Yellow"} player has won`);
 
-  // check for vertical win
-
-  // check for diagonal win
-
-  // check for other diagonal win
+    removeAllPieces();
+  }
 
   playerTurn === RED_TURN
     ? (playerTurn = YELLOW_TURN)
@@ -121,5 +184,7 @@ function removeUnplacedPiece() {
 
 function onMouseEnteredColumn(column) {
   hoverColumn = column;
-  updateHover();
+  if (!animating) {
+    updateHover();
+  }
 }
