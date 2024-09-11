@@ -35,6 +35,42 @@ h1 {
   grid-template-rows: repeat(6, 1fr);
 }
 
+.board-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-side {
+  background-color: blue;
+  height: 66vmin;
+  width: 3vmin;
+  transform: translateY(11vmin); /* Move the element down by 11 vmin */
+}
+.right-side {
+  background-color: blue;
+  height: 66vmin;
+  width: 3vmin;
+  transform: translateY(11vmin); /* Move the element down by 11 vmin */
+}
+
+.board-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-side {
+  background-color: blue;
+  height: 3vmin;
+  width: 83vmin;
+  transform: translateY(11.1vmin); /* Move the element down by 11 vmin */
+  z-index: 1;
+}
+.bottom-side {
+  background-color: blue;
+  height: 3vmin;
+  width: 83vmin;
+}
+
 .cell {
   position: relative;
   display: flex;
@@ -51,7 +87,6 @@ h1 {
 
 .piece {
   border-radius: 50%;
-  background-color: rgb(43, 0, 255);
   flex-grow: 1;
 }
 
