@@ -6,7 +6,7 @@
 }
 
 html {
-  background-color: grey;
+  background: linear-gradient(135deg, #b89ea3, #808c9f);
   /* background-image: url(""); */
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,7 +23,7 @@ body {
 h1 {
   font-size: 5vh;
   margin: 2.5vh;
-  font-family: "Courier New", Courier, monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #board {
@@ -41,16 +41,16 @@ h1 {
 }
 
 .left-side {
-  background-color: blue;
+  background-color: rgb(20, 20, 168);
   height: 66vmin;
   width: 3vmin;
-  transform: translateY(11vmin); /* Move the element down by 11 vmin */
+  transform: translateY(11.1vmin); /* Move the element down by 11 vmin */
 }
 .right-side {
-  background-color: blue;
+  background-color: rgb(20, 20, 168);
   height: 66vmin;
   width: 3vmin;
-  transform: translateY(11vmin); /* Move the element down by 11 vmin */
+  transform: translateY(11.1vmin); /* Move the element down by 11 vmin */
 }
 
 .board-column {
@@ -59,16 +59,18 @@ h1 {
 }
 
 .top-side {
-  background-color: blue;
+  background-color: rgb(20, 20, 168);
   height: 3vmin;
   width: 83vmin;
+  border-radius: 2vmin 2vmin 0vmin 0vmin;
   transform: translateY(11.1vmin); /* Move the element down by 11 vmin */
   z-index: 1;
 }
 .bottom-side {
-  background-color: blue;
+  background-color: rgb(20, 20, 168);
   height: 3vmin;
   width: 83vmin;
+  border-radius: 0vmin 0vmin 2vmin 2vmin;
 }
 
 .cell {
@@ -99,7 +101,7 @@ h1 {
 }
 
 .piece[data-placed="false"] {
-  transform: translateY(-12vmin);
+  transform: translateY(-15vmin);
 }
 
 .shine {
@@ -110,9 +112,11 @@ h1 {
 
 #modal-container {
   width: 60vmin;
-  height: 30vmin;
+  height: 200px;
   padding: 0vmin 5vmin;
-  background-color: aqua;
+  background-color: rgba(179, 179, 179, 0.6);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Modern shadow */
+
   display: block;
   border-radius: 2em;
 }
@@ -120,4 +124,43 @@ h1 {
 #modal-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+#modal-message {
+  font-size: 2em; /* Font size */
+  margin: 0.2em;
+}
+
+#reset {
+  background-color: rgb(20, 20, 168); /* Blue background */
+  color: white; /* White text */
+  padding: 12px 24px; /* Padding for the button */
+  border: none; /* Remove borders */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition */
+  font-family: "Arial", sans-serif; /* Modern font */
+  outline: none; /* Remove focus outline */
+}
+
+/* Hover effect */
+#reset:hover {
+  background-color: rgb(17, 17, 150); /* Darker blue */
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15); /* Increased shadow */
+  transform: translateY(-2px); /* Slight lift */
+}
+
+/* Focused button styling */
+#reset:focus {
+  outline: 2px solid rgb(23, 23, 196); /* Blue outline for focus */
+  outline-offset: 4px;
+}
+
+/* Active button (pressed) effect */
+#reset:active {
+  transform: translateY(1px); /* Subtle push down effect */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow */
 }
