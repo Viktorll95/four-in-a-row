@@ -188,3 +188,7 @@ function onMouseEnteredColumn(column) {
     updateHover();
   }
 }
+
+document.querySelector("#reset").addEventListener("click", () => {
+  removeAllPieces();
+});
