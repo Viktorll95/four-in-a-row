@@ -46,6 +46,9 @@ h1 {
   width: 3vmin;
   transform: translateY(11.1vmin); /* Move the element down by 11 vmin */
   z-index: 1;
+
+  border-left: 1vmin solid rgb(10, 10, 128); /* Darker blue left border */
+  box-sizing: border-box; /* Include padding and borders in element’s total width/height */
 }
 .right-side {
   background-color: rgb(20, 20, 168);
@@ -53,6 +56,9 @@ h1 {
   width: 3vmin;
   transform: translateY(11.1vmin); /* Move the element down by 11 vmin */
   z-index: 1;
+
+  border-right: 1vmin solid rgb(10, 10, 128); /* Darker blue right border */
+  box-sizing: border-box; /* Include padding and borders in element’s total width/height */
 }
 
 .board-column {
@@ -67,6 +73,11 @@ h1 {
   border-radius: 2vmin 2vmin 0vmin 0vmin;
   transform: translateY(11.2vmin); /* Move the element down by 11 vmin */
   z-index: 1;
+
+  border-top: 1vmin solid rgb(10, 10, 128); /* Darker blue top border */
+  border-left: 1vmin solid rgb(10, 10, 128); /* Darker blue left border */
+  border-right: 1vmin solid rgb(10, 10, 128); /* Darker blue right border */
+  box-sizing: border-box; /* Include padding and borders in element’s total width/height */
 }
 .bottom-side {
   background-color: rgb(20, 20, 168);
@@ -74,6 +85,11 @@ h1 {
   width: 83vmin;
   border-radius: 0vmin 0vmin 2vmin 2vmin;
   z-index: 1;
+
+  border-bottom: 1vmin solid rgb(10, 10, 128); /* Darker blue top border */
+  border-left: 1vmin solid rgb(10, 10, 128); /* Darker blue left border */
+  border-right: 1vmin solid rgb(10, 10, 128); /* Darker blue right border */
+  box-sizing: border-box; /* Include padding and borders in element’s total width/height */
 }
 
 .cell {
@@ -139,20 +155,21 @@ h1 {
   transform: translateY(-15vmin);
 }
 
-.shine {
-  background-color: white;
+.winning-piece {
+  z-index: 2;
 }
 
 /* MODAL */
 
-#modal-container {
+.modal-container {
   width: 60vmin;
-  height: 17em;
   padding: 0vmin 5vmin;
-  background-color: rgba(179, 179, 179, 0.6);
+  background-color: rgba(179, 179, 179, 0.8);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Modern shadow */
 
+  margin-top: 30vh;
   display: block;
+  position: fixed;
   border-radius: 2em;
 
   z-index: 2;
@@ -170,9 +187,10 @@ h1 {
 }
 
 #reset {
-  background-color: rgb(20, 20, 168); /* Blue background */
+  background-color: rgb(20, 20, 168, 0.8); /* Blue background */
   color: white; /* White text */
   padding: 12px 24px; /* Padding for the button */
+  margin: 3vmin;
   border: none; /* Remove borders */
   border-radius: 8px; /* Rounded corners */
   font-size: 16px; /* Font size */

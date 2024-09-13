@@ -1,11 +1,15 @@
 const board = document.querySelector("#board");
+const modal = document.querySelector(".modal-container");
+const modalMessage = document.querySelector("#modal-message");
 
 const RED_TURN = 1;
 const YELLOW_TURN = 2;
 
+let gameOver = false;
+
 //  | 0 - empty, 1 - red, 2 - yellow
 // prettier-ignore
-const pieces = [
+let pieces = [
   0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 
@@ -24,11 +28,12 @@ function hasPlayerWon(playerTurn, pieces) {
         pieces[i + 2] === playerTurn &&
         pieces[i + 3] === playerTurn
       ) {
+        gameOver = true;
         // Later, this will be used to style the winnning pieces (pieces that makes four in a row):
-        // board.children[i].children[0].style.backgroundColor = "white";
-        // board.children[i + 1].children[0].style.backgroundColor = "white";
-        // board.children[i + 2].children[0].style.backgroundColor = "white";
-        // board.children[i + 3].children[0].style.backgroundColor = "white";
+        board.children[i].children[0].classList.add("winning-piece");
+        board.children[i + 1].children[0].classList.add("winning-piece");
+        board.children[i + 2].children[0].classList.add("winning-piece");
+        board.children[i + 3].children[0].classList.add("winning-piece");
         return true;
       }
     }
@@ -78,12 +83,16 @@ for (let i = 0; i < 42; i++) {
   board.appendChild(cell);
 
   cell.onmouseenter = () => {
-    onMouseEnteredColumn(i % 7);
+    if (!gameOver) {
+      onMouseEnteredColumn(i % 7);
+    }
   };
 
   cell.onclick = () => {
-    if (!animating) {
-      onColumnClicked(i % 7);
+    if (!gameOver) {
+      if (!animating) {
+        onColumnClicked(i % 7);
+      }
     }
   };
 }
@@ -118,7 +127,7 @@ function onColumnClicked(column) {
       { transform: `translateY(0px)`, offset: 1 },
     ],
     {
-      duration: 300,
+      duration: 400,
       easing: "linear",
       iterations: 1,
     }
@@ -140,16 +149,18 @@ function checkGameWinOrDraw() {
   // check if game is draw
   if (!pieces.includes(0)) {
     // Game is a draw
-    confirm("Game is a draw");
+    modalMessage.textContent = "Game is a draw";
 
-    removeAllPieces();
+    showModal();
   }
 
   if (hasPlayerWon(playerTurn, pieces)) {
     // Current player has won
-    confirm(`${playerTurn === RED_TURN ? "Red" : "Yellow"} player has won`);
+    modalMessage.textContent = `${
+      playerTurn === RED_TURN ? "Red" : "Yellow"
+    } player has won`;
 
-    removeAllPieces();
+    showModal();
   }
 
   playerTurn === RED_TURN
@@ -191,4 +202,20 @@ function onMouseEnteredColumn(column) {
 
 document.querySelector("#reset").addEventListener("click", () => {
   removeAllPieces();
+});
+
+function showModal() {
+  gameOver = true;
+  modal.classList.remove("hidden");
+}
+
+function hideModal() {
+  modal.classList.add("hidden");
+}
+
+document.querySelector("#reset").addEventListener("click", () => {
+  pieces = pieces.map((piece) => (piece = 0));
+  removeAllPieces();
+  hideModal();
+  gameOver = false;
 });
