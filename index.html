@@ -15,13 +15,28 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
       <div class="player">
         <div class="mini-piece" data-player="1"></div>
         <input type="text" id="player1-name" value="Player 1" />
+        <div class="win-counter">
+          <span class="win-label">Wins</span>
+          <span class="win-number" id="player1-wins">0</span>
+          <!-- Win number for Player 1 -->
+        </div>
       </div>
-      <h2>Connect four</h2>
+
+      <!-- Centered Heading -->
+      <h2>Connect Four</h2>
+
       <div class="player">
         <div class="mini-piece" data-player="2"></div>
         <input type="text" id="player2-name" value="Player 2" />
+        <div class="win-counter">
+          <span class="win-label">Wins</span>
+          <span class="win-number" id="player2-wins">0</span>
+          <!-- Win number for Player 2 -->
+        </div>
       </div>
     </div>
+    <!-- Game board -->
+
     <div class="board-column">
       <div class="top-side"></div>
       <div class="board-row">
@@ -32,12 +47,21 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
       <div class="bottom-side"></div>
     </div>
 
+    <!-- Modal -->
     <div class="modal-container hidden">
       <div id="modal-content">
         <h1>Game Over</h1>
         <p id="modal-message">Color wins!</p>
         <button id="reset">Play again</button>
       </div>
+    </div>
+
+    <!-- Control Buttons Bar -->
+    <div id="control-bar">
+      <button id="switch-turn">Switch Turn</button>
+      <button id="restart-game">Restart Game</button>
+      <button id="toggle-music">Music Off</button>
+      <button id="toggle-sound">Sound Effects Off</button>
     </div>
 
     <script src="script.js"></script>

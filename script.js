@@ -32,6 +32,8 @@ function displayWinningConnection(
     playerTurn === RED_TURN ? "Red" : "Yellow"
   } player has won`;
 
+  updateWinCounter(playerTurn);
+
   setTimeout(() => {
     windoot.play();
     board.children[firstIndex].children[0].classList.add("winning-piece");
@@ -258,4 +260,57 @@ player1Input.addEventListener("input", function () {
 player2Input.addEventListener("input", function () {
   player2Name = player2Input.value || "Player 2"; // Fallback to default if input is empty
   console.log("Player 2's name is now:", player2Name);
+});
+
+let player1Wins = 0;
+let player2Wins = 0;
+
+function updateWinCounter(player) {
+  if (player === 1) {
+    player1Wins++;
+    document.getElementById("player1-wins").textContent = `${player1Wins}`;
+  } else if (player === 2) {
+    player2Wins++;
+    document.getElementById("player2-wins").textContent = `${player2Wins}`;
+  }
+}
+
+// Function to reset win counters when player name is updated
+function resetWinCounter(player) {
+  if (player === 1) {
+    player1Wins = 0;
+    document.getElementById("player1-wins").textContent = "0";
+  } else if (player === 2) {
+    player2Wins = 0;
+    document.getElementById("player2-wins").textContent = "0";
+  }
+}
+
+// Event listeners for player name changes
+document
+  .getElementById("player1-name")
+  .addEventListener("input", () => resetWinCounter(1));
+document
+  .getElementById("player2-name")
+  .addEventListener("input", () => resetWinCounter(2));
+
+// Empty event listeners for buttons
+document.getElementById("switch-turn").addEventListener("click", () => {
+  // Logic for switching player turn goes here
+  console.log("Switch Turn button clicked");
+});
+
+document.getElementById("restart-game").addEventListener("click", () => {
+  // Logic for restarting the game goes here
+  console.log("Restart Game button clicked");
+});
+
+document.getElementById("toggle-music").addEventListener("click", () => {
+  // Logic for toggling music goes here
+  console.log("Toggle Music button clicked");
+});
+
+document.getElementById("toggle-sound").addEventListener("click", () => {
+  // Logic for toggling sound effects goes here
+  console.log("Toggle Sound Effects button clicked");
 });
