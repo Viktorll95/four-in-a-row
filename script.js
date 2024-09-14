@@ -1,6 +1,7 @@
 const board = document.querySelector("#board");
 const modal = document.querySelector(".modal-container");
 const modalMessage = document.querySelector("#modal-message");
+const windoot = new Audio("windoot.mp3");
 
 const RED_TURN = 1;
 const YELLOW_TURN = 2;
@@ -18,6 +19,39 @@ let pieces = [
   0, 0, 0, 0, 0, 0, 0,
 ];
 
+function displayWinningConnection(
+  firstIndex,
+  secondIndex,
+  thirdIndex,
+  fourthIndex
+) {
+  removeUnplacedPiece();
+  gameOver = true;
+  // Current player has won
+  modalMessage.textContent = `${
+    playerTurn === RED_TURN ? "Red" : "Yellow"
+  } player has won`;
+
+  setTimeout(() => {
+    windoot.play();
+    board.children[firstIndex].children[0].classList.add("winning-piece");
+    setTimeout(() => {
+      board.children[secondIndex].children[0].classList.add("winning-piece");
+      setTimeout(() => {
+        board.children[thirdIndex].children[0].classList.add("winning-piece");
+        setTimeout(() => {
+          board.children[fourthIndex].children[0].classList.add(
+            "winning-piece"
+          );
+          setTimeout(() => {
+            showModal();
+            return true;
+          }, 500);
+        }, 500);
+      }, 500);
+    }, 500);
+  }, 400);
+}
 function hasPlayerWon(playerTurn, pieces) {
   for (let i = 0; i < 42; i++) {
     // check for horisontal win
@@ -28,13 +62,7 @@ function hasPlayerWon(playerTurn, pieces) {
         pieces[i + 2] === playerTurn &&
         pieces[i + 3] === playerTurn
       ) {
-        gameOver = true;
-        // Later, this will be used to style the winnning pieces (pieces that makes four in a row):
-        board.children[i].children[0].classList.add("winning-piece");
-        board.children[i + 1].children[0].classList.add("winning-piece");
-        board.children[i + 2].children[0].classList.add("winning-piece");
-        board.children[i + 3].children[0].classList.add("winning-piece");
-        return true;
+        displayWinningConnection(i, i + 1, i + 2, i + 3);
       }
     }
     // check for vertical win
@@ -45,7 +73,7 @@ function hasPlayerWon(playerTurn, pieces) {
         pieces[i + 14] === playerTurn &&
         pieces[i + 21] === playerTurn
       ) {
-        return true;
+        displayWinningConnection(i, i + 7, i + 14, i + 21);
       }
     }
     // check for diagonal win \
@@ -56,7 +84,7 @@ function hasPlayerWon(playerTurn, pieces) {
         pieces[i + 16] === playerTurn &&
         pieces[i + 24] === playerTurn
       ) {
-        return true;
+        displayWinningConnection(i, i + 8, i + 16, i + 24);
       }
     }
     // check for other diagonal win /
@@ -67,7 +95,7 @@ function hasPlayerWon(playerTurn, pieces) {
         pieces[i - 12] === playerTurn &&
         pieces[i - 18] === playerTurn
       ) {
-        return true;
+        displayWinningConnection(i, i - 6, i - 12, i - 18);
       }
     }
   }
@@ -155,12 +183,6 @@ function checkGameWinOrDraw() {
   }
 
   if (hasPlayerWon(playerTurn, pieces)) {
-    // Current player has won
-    modalMessage.textContent = `${
-      playerTurn === RED_TURN ? "Red" : "Yellow"
-    } player has won`;
-
-    showModal();
   }
 
   playerTurn === RED_TURN
@@ -199,10 +221,6 @@ function onMouseEnteredColumn(column) {
     updateHover();
   }
 }
-
-document.querySelector("#reset").addEventListener("click", () => {
-  removeAllPieces();
-});
 
 function showModal() {
   gameOver = true;
