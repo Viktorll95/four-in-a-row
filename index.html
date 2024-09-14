@@ -10,7 +10,18 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Connect four</h1>
+    <!-- Modern Player Info Bar -->
+    <div id="player-info">
+      <div class="player">
+        <div class="mini-piece" data-player="1"></div>
+        <input type="text" id="player1-name" value="Player 1" />
+      </div>
+      <h2>Connect four</h2>
+      <div class="player">
+        <div class="mini-piece" data-player="2"></div>
+        <input type="text" id="player2-name" value="Player 2" />
+      </div>
+    </div>
     <div class="board-column">
       <div class="top-side"></div>
       <div class="board-row">
@@ -28,6 +39,7 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
         <button id="reset">Play again</button>
       </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>

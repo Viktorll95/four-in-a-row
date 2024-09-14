@@ -237,3 +237,25 @@ document.querySelector("#reset").addEventListener("click", () => {
   hideModal();
   gameOver = false;
 });
+
+////////////////////////////////////////////////
+// Player info bar
+
+// Define default player names
+let player1Name = "Player 1";
+let player2Name = "Player 2";
+
+// Get the input elements for player names
+const player1Input = document.getElementById("player1-name");
+const player2Input = document.getElementById("player2-name");
+
+// Add event listeners to update the player names when changed
+player1Input.addEventListener("input", function () {
+  player1Name = player1Input.value || "Player 1"; // Fallback to default if input is empty
+  console.log("Player 1's name is now:", player1Name);
+});
+
+player2Input.addEventListener("input", function () {
+  player2Name = player2Input.value || "Player 2"; // Fallback to default if input is empty
+  console.log("Player 2's name is now:", player2Name);
+});
