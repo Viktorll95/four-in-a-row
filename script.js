@@ -2,6 +2,8 @@ const board = document.querySelector("#board");
 const modal = document.querySelector(".modal-container");
 const modalMessage = document.querySelector("#modal-message");
 const windoot = new Audio("windoot.mp3");
+const coinDrop = new Audio("coin-drop.mp3");
+const waterDrop = new Audio("water-drop.mp3");
 
 const RED_TURN = 1;
 const YELLOW_TURN = 2;
@@ -103,7 +105,8 @@ function hasPlayerWon(playerTurn, pieces) {
   }
 }
 
-let playerTurn = RED_TURN; // 1 - red, 2 - yellow
+let playerTurn = Math.random() < 0.5 ? RED_TURN : YELLOW_TURN;
+// 1 - red, 2 - yellow
 let hoverColumn = -1;
 let animating = false;
 
@@ -147,6 +150,8 @@ function onColumnClicked(column) {
   let placedY = piece.getBoundingClientRect().y;
   let yDiff = unplacedY - placedY;
 
+  // coinDrop.play();
+  waterDrop.play();
   animating = true;
   removeUnplacedPiece();
   let animation = piece.animate(
@@ -226,6 +231,7 @@ function onMouseEnteredColumn(column) {
 
 function showModal() {
   gameOver = true;
+  removeUnplacedPiece();
   modal.classList.remove("hidden");
 }
 
@@ -236,6 +242,7 @@ function hideModal() {
 document.querySelector("#reset").addEventListener("click", () => {
   pieces = pieces.map((piece) => (piece = 0));
   removeAllPieces();
+  playerTurn = Math.random() < 0.5 ? RED_TURN : YELLOW_TURN;
   hideModal();
   gameOver = false;
 });
@@ -301,8 +308,8 @@ document.getElementById("switch-turn").addEventListener("click", () => {
 });
 
 document.getElementById("restart-game").addEventListener("click", () => {
-  // Logic for restarting the game goes here
-  console.log("Restart Game button clicked");
+  modalMessage.textContent = `"Restart Game" was pressed`;
+  showModal();
 });
 
 document.getElementById("toggle-music").addEventListener("click", () => {
