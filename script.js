@@ -4,6 +4,8 @@ const modalMessage = document.querySelector("#modal-message");
 const windoot = new Audio("windoot.mp3");
 const coinDrop = new Audio("coin-drop.mp3");
 const waterDrop = new Audio("water-drop.mp3");
+const winSoundEffect = windoot;
+const dropPieceSoundEffect = waterDrop;
 
 const RED_TURN = 1;
 const YELLOW_TURN = 2;
@@ -37,7 +39,8 @@ function displayWinningConnection(
   updateWinCounter(playerTurn);
 
   setTimeout(() => {
-    windoot.play();
+    removeUnplacedPiece();
+    winSoundEffect.play();
     board.children[firstIndex].children[0].classList.add("winning-piece");
     setTimeout(() => {
       board.children[secondIndex].children[0].classList.add("winning-piece");
@@ -151,7 +154,7 @@ function onColumnClicked(column) {
   let yDiff = unplacedY - placedY;
 
   // coinDrop.play();
-  waterDrop.play();
+  dropPieceSoundEffect.play();
   animating = true;
   removeUnplacedPiece();
   let animation = piece.animate(
@@ -303,8 +306,10 @@ document
 
 // Empty event listeners for buttons
 document.getElementById("switch-turn").addEventListener("click", () => {
-  // Logic for switching player turn goes here
-  console.log("Switch Turn button clicked");
+  removeUnplacedPiece();
+  playerTurn === YELLOW_TURN
+    ? (playerTurn = RED_TURN)
+    : (playerTurn = YELLOW_TURN);
 });
 
 document.getElementById("restart-game").addEventListener("click", () => {
@@ -312,12 +317,28 @@ document.getElementById("restart-game").addEventListener("click", () => {
   showModal();
 });
 
-document.getElementById("toggle-music").addEventListener("click", () => {
+const toggleMusicBtn = document.getElementById("toggle-music");
+toggleMusicBtn.addEventListener("click", () => {
+  if (toggleMusicBtn.textContent === "Music Off") {
+    toggleMusicBtn.textContent = "Music On";
+  } else {
+    toggleMusicBtn.textContent = "Music Off";
+  }
   // Logic for toggling music goes here
   console.log("Toggle Music button clicked");
 });
 
-document.getElementById("toggle-sound").addEventListener("click", () => {
+const toggleSoundBtn = document.getElementById("toggle-sound");
+toggleSoundBtn.addEventListener("click", () => {
   // Logic for toggling sound effects goes here
-  console.log("Toggle Sound Effects button clicked");
+
+  if (toggleSoundBtn.textContent === "Sound Effects On") {
+    toggleSoundBtn.textContent = "Sound Effects Off";
+    winSoundEffect.muted = true;
+    dropPieceSoundEffect.muted = true;
+  } else {
+    toggleSoundBtn.textContent = "Sound Effects On";
+    winSoundEffect.muted = false;
+    dropPieceSoundEffect.muted = false;
+  }
 });
