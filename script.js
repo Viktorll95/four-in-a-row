@@ -264,12 +264,12 @@ const player2Input = document.getElementById("player2-name");
 // Add event listeners to update the player names when changed
 player1Input.addEventListener("input", function () {
   player1Name = player1Input.value || "Player 1"; // Fallback to default if input is empty
-  console.log("Player 1's name is now:", player1Name);
+  resetWinCounter();
 });
 
 player2Input.addEventListener("input", function () {
   player2Name = player2Input.value || "Player 2"; // Fallback to default if input is empty
-  console.log("Player 2's name is now:", player2Name);
+  resetWinCounter();
 });
 
 let player1Wins = 0;
