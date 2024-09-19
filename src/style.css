@@ -6,13 +6,13 @@
 }
 
 html {
-  background: linear-gradient(135deg, #b89ea3, #808c9f);
   /* background-image: url(""); */
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 body {
+  background: linear-gradient(135deg, #b89ea3, #808c9f);
   display: flex;
   flex-direction: column;
   align-items: center;
