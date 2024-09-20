@@ -7,6 +7,11 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connect four</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
+    />
+
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -61,8 +66,15 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
     <div id="control-bar">
       <button id="switch-turn">Switch Turn</button>
       <button id="restart-game">Restart Game</button>
-      <button id="toggle-music">Music Off</button>
-      <button id="toggle-sound">Sound Effects On</button>
+      <button id="toggle-music">
+        Music
+        <i class="bi bi-volume-up"></i>
+      </button>
+      <button id="toggle-sound" aria-label="Toggle Sound">
+        Sound effects
+        <i class="bi bi-volume-up"></i>
+        <!-- Default icon when sound is on -->
+      </button>
     </div>
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -318,26 +318,32 @@ document.getElementById("restart-game").addEventListener("click", () => {
 });
 
 const toggleMusicBtn = document.getElementById("toggle-music");
+const musicIcon = toggleMusicBtn.querySelector("i");
 toggleMusicBtn.addEventListener("click", () => {
-  if (toggleMusicBtn.textContent === "Music Off") {
-    toggleMusicBtn.textContent = "Music On";
+  if (musicIcon.classList.contains("bi-volume-up")) {
+    musicIcon.classList.replace("bi-volume-up", "bi-volume-mute"); // Change icon to muted
+    winSoundEffect.muted = true;
+    dropPieceSoundEffect.muted = true;
   } else {
-    toggleMusicBtn.textContent = "Music Off";
+    musicIcon.classList.replace("bi-volume-mute", "bi-volume-up"); // Change icon to sound on
+    winSoundEffect.muted = false;
+    dropPieceSoundEffect.muted = false;
   }
   // Logic for toggling music goes here
   console.log("Toggle Music button clicked");
 });
 
 const toggleSoundBtn = document.getElementById("toggle-sound");
-toggleSoundBtn.addEventListener("click", () => {
-  // Logic for toggling sound effects goes here
+const soundIcon = toggleSoundBtn.querySelector("i");
 
-  if (toggleSoundBtn.textContent === "Sound Effects On") {
-    toggleSoundBtn.textContent = "Sound Effects Off";
+toggleSoundBtn.addEventListener("click", () => {
+  // Toggle sound on/off logic
+  if (soundIcon.classList.contains("bi-volume-up")) {
+    soundIcon.classList.replace("bi-volume-up", "bi-volume-mute"); // Change icon to muted
     winSoundEffect.muted = true;
     dropPieceSoundEffect.muted = true;
   } else {
-    toggleSoundBtn.textContent = "Sound Effects On";
+    soundIcon.classList.replace("bi-volume-mute", "bi-volume-up"); // Change icon to sound on
     winSoundEffect.muted = false;
     dropPieceSoundEffect.muted = false;
   }
