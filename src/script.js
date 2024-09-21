@@ -348,3 +348,14 @@ toggleSoundBtn.addEventListener("click", () => {
     dropPieceSoundEffect.muted = false;
   }
 });
+
+document.addEventListener("keydown", (event) => {
+  if (!gameOver) {
+    if (!animating) {
+      if (event.key >= "1" && event.key <= "7") {
+        onMouseEnteredColumn(Number(event.key) - 1);
+        onColumnClicked(Number(event.key) - 1);
+      }
+    }
+  }
+});
