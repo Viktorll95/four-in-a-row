@@ -1,5 +1,5 @@
 const board = document.querySelector("#board");
-const modal = document.querySelector(".modal-container");
+const modal = document.querySelector(".modal-play-again");
 const modalMessage = document.querySelector("#modal-message");
 const windoot = new Audio("windoot.mp3");
 const coinDrop = new Audio("coin-drop.mp3");
@@ -331,6 +331,11 @@ toggleMusicBtn.addEventListener("click", () => {
   }
   // Logic for toggling music goes here
   console.log("Toggle Music button clicked");
+});
+
+toggleMusicBtn.addEventListener("dblclick", function () {
+  // Code to handle the double-click event
+  alert("Button was double-clicked!");
 });
 
 const toggleSoundBtn = document.getElementById("toggle-sound");
