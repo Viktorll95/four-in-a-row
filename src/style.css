@@ -204,7 +204,7 @@ h1 {
   margin: 0.2em;
 }
 
-#reset {
+.c-button {
   background-color: rgb(20, 20, 168, 0.8); /* Blue background */
   color: white; /* White text */
   padding: 12px 24px; /* Padding for the button */
@@ -220,20 +220,20 @@ h1 {
 }
 
 /* Hover effect */
-#reset:hover {
+.c-button:hover {
   background-color: rgb(17, 17, 150); /* Darker blue */
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15); /* Increased shadow */
   transform: translateY(-2px); /* Slight lift */
 }
 
 /* Focused button styling */
-#reset:focus {
+.c-button:focus {
   outline: 2px solid rgb(23, 23, 196); /* Blue outline for focus */
   outline-offset: 4px;
 }
 
 /* Active button (pressed) effect */
-#reset:active {
+.c-button:active {
   transform: translateY(1px); /* Subtle push down effect */
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow */
 }
