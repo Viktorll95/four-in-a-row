@@ -193,7 +193,7 @@ h1 {
   z-index: 2;
 }
 
-#modal-content {
+.modal-content {
   display: flex;
   flex-direction: column;
   align-items: center;
