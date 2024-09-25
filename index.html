@@ -63,11 +63,11 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
     </div>
 
     <!-- Modal - Choose music -->
-    <div class="modal-container music-modal-container" id="modal">
+    <div class="modal-container music-modal-container hidden" id="modal">
       <div class="music-modal-content">
         <!-- Close Button -->
-        <button class="close-btn" onclick="closeModal()">
-          <i class="bi bi-x-lg"></i>
+        <button class="close-btn">
+          <i class="bi bi-x-lg btn-music-modal-close"></i>
         </button>
 
         <h1>Choose Music</h1>
@@ -126,7 +126,7 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
       <button id="restart-game">Restart Game</button>
       <button id="toggle-music">
         Music
-        <i class="bi bi-volume-up"></i>
+        <i class="bi bi-volume-mute"></i>
       </button>
       <button id="toggle-sound" aria-label="Toggle Sound">
         Sound effects
@@ -135,7 +135,7 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
       </button>
     </div>
 
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

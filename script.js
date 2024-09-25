@@ -319,24 +319,6 @@ document.getElementById("restart-game").addEventListener("click", () => {
 
 const toggleMusicBtn = document.getElementById("toggle-music");
 const musicIcon = toggleMusicBtn.querySelector("i");
-toggleMusicBtn.addEventListener("click", () => {
-  if (musicIcon.classList.contains("bi-volume-up")) {
-    musicIcon.classList.replace("bi-volume-up", "bi-volume-mute"); // Change icon to muted
-    winSoundEffect.muted = true;
-    dropPieceSoundEffect.muted = true;
-  } else {
-    musicIcon.classList.replace("bi-volume-mute", "bi-volume-up"); // Change icon to sound on
-    winSoundEffect.muted = false;
-    dropPieceSoundEffect.muted = false;
-  }
-  // Logic for toggling music goes here
-  console.log("Toggle Music button clicked");
-});
-
-toggleMusicBtn.addEventListener("dblclick", function () {
-  // Code to handle the double-click event
-  alert("Button was double-clicked!");
-});
 
 const toggleSoundBtn = document.getElementById("toggle-sound");
 const soundIcon = toggleSoundBtn.querySelector("i");
@@ -365,8 +347,49 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+toggleMusicBtn.addEventListener("click", () => {
+  showMusicModal();
+  // if (musicIcon.classList.contains("bi-volume-up")) {
+  //   musicIcon.classList.replace("bi-volume-up", "bi-volume-mute"); // Change icon to muted
+  // } else {
+  //   musicIcon.classList.replace("bi-volume-mute", "bi-volume-up"); // Change icon to sound on
+  // }
+});
+
 ////////////////////////////////////
 // Music control
+
+const musicModal = document.querySelector(".music-modal-container");
+
+function showMusicModal() {
+  musicModal.classList.remove("hidden");
+  event.stopPropagation(); // Prevent click event from propagating to the document-level listener
+}
+
+function closeMusicModal() {
+  musicModal.classList.add("hidden");
+}
+
+// Close button on music modal that closes it
+document
+  .querySelector(".btn-music-modal-close")
+  .addEventListener("click", closeMusicModal);
+
+// Close modal on 'Escape' key press
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeMusicModal();
+  }
+});
+
+// Close modal when clicking outside the modal content
+document.addEventListener("click", function (event) {
+  const modal = document.getElementById("modal");
+  const modalContent = document.querySelector(".music-modal-content");
+  if (event.target !== modalContent && !modalContent.contains(event.target)) {
+    closeMusicModal();
+  }
+});
 
 const audioPlayer = document.getElementById("audio-player");
 let isPlaying = false;
@@ -377,6 +400,7 @@ function playSong(song) {
   audioPlayer.play(); // Start playing the selected song
   isPlaying = true;
   updateButtonState(); // Update play/pause button states
+  musicIcon.classList.replace("bi-volume-mute", "bi-volume-up"); // Change icon to sound on
 }
 
 // Function to play the audio if paused
@@ -385,6 +409,7 @@ function playAudio() {
     audioPlayer.play();
     isPlaying = true;
     updateButtonState(); // Update button state
+    musicIcon.classList.replace("bi-volume-mute", "bi-volume-up"); // Change icon to sound on
   }
 }
 
@@ -395,6 +420,7 @@ function pauseAudio() {
     isPlaying = false;
     updateButtonState(); // Update button state
   }
+  musicIcon.classList.replace("bi-volume-up", "bi-volume-mute"); // Change icon to muted
 }
 
 // Function to stop the audio (pause and reset)
@@ -403,6 +429,7 @@ function stopAudio() {
   audioPlayer.currentTime = 0; // Reset audio to the beginning
   isPlaying = false;
   updateButtonState(); // Update button state
+  musicIcon.classList.replace("bi-volume-up", "bi-volume-mute"); // Change icon to muted
 }
 
 // Function to close the modal
