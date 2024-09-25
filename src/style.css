@@ -466,3 +466,29 @@ input[type="text"]:focus {
     margin-bottom: 1vmin;
   }
 }
+
+/* Music modal container */
+
+.music-modal-container {
+  padding: 20px;
+}
+.music-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: rgb(10, 10, 128); /* Darker blue */
+}
+.close-btn:hover {
+  color: red;
+}
+
+/* Music modal container  */

@@ -364,3 +364,67 @@ document.addEventListener("keydown", (event) => {
     }
   }
 });
+
+////////////////////////////////////
+// Music control
+
+const audioPlayer = document.getElementById("audio-player");
+let isPlaying = false;
+
+// Function to play the selected song
+function playSong(song) {
+  audioPlayer.src = "music/" + song; // Set the source of the audio element
+  audioPlayer.play(); // Start playing the selected song
+  isPlaying = true;
+  updateButtonState(); // Update play/pause button states
+}
+
+// Function to play the audio if paused
+function playAudio() {
+  if (!isPlaying) {
+    audioPlayer.play();
+    isPlaying = true;
+    updateButtonState(); // Update button state
+  }
+}
+
+// Function to pause the audio
+function pauseAudio() {
+  if (isPlaying) {
+    audioPlayer.pause();
+    isPlaying = false;
+    updateButtonState(); // Update button state
+  }
+}
+
+// Function to stop the audio (pause and reset)
+function stopAudio() {
+  audioPlayer.pause();
+  audioPlayer.currentTime = 0; // Reset audio to the beginning
+  isPlaying = false;
+  updateButtonState(); // Update button state
+}
+
+// Function to close the modal
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// Function to update the play and pause button states
+function updateButtonState() {
+  const playButton = document.getElementById("play-btn");
+  const pauseButton = document.getElementById("pause-btn");
+
+  if (isPlaying) {
+    playButton.classList.add("disabled"); // Disable the play button when playing
+    pauseButton.classList.remove("disabled"); // Enable the pause button
+  } else {
+    playButton.classList.remove("disabled"); // Enable play button when paused
+    pauseButton.classList.add("disabled"); // Disable pause button
+  }
+}
+
+// Initialize the buttons as disabled when no song is playing
+window.onload = () => {
+  updateButtonState();
+};

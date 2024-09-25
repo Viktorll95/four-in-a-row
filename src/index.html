@@ -63,13 +63,62 @@ https://www.youtube.com/watch?v=kA9OOeUXXSU&t=915s    -->
     </div>
 
     <!-- Modal - Choose music -->
-    <div class="modal-choice-music modal-container">
-      <div class="modal-content">
-        <h1>Choose music</h1>
-        <p id="modal-message">Color wins!</p>
-        <button class="c-button" id="reset">Play again</button>
+    <div class="modal-container music-modal-container" id="modal">
+      <div class="music-modal-content">
+        <!-- Close Button -->
+        <button class="close-btn" onclick="closeModal()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+
+        <h1>Choose Music</h1>
+        <div class="list-group">
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            onclick="playSong('connect-four-music.mp3')"
+          >
+            Connect Four Music
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            onclick="playSong('deep-dunk-music.mp3')"
+          >
+            Deep Dunk Music
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            onclick="playSong('thin-ice-music.mp3')"
+          >
+            Thin Ice Music
+          </button>
+        </div>
+
+        <div class="mt-4">
+          <button
+            id="play-btn"
+            class="btn btn-success me-2"
+            onclick="playAudio()"
+          >
+            <i class="bi bi-play-fill"></i> Play
+          </button>
+          <button
+            id="pause-btn"
+            class="btn btn-warning me-2"
+            onclick="pauseAudio()"
+          >
+            <i class="bi bi-pause-fill"></i> Pause
+          </button>
+          <button id="stop-btn" class="btn btn-danger" onclick="stopAudio()">
+            <i class="bi bi-stop-fill"></i> Stop
+          </button>
+        </div>
       </div>
     </div>
+
+    <!-- Audio Element (hidden) -->
+    <audio id="audio-player" loop></audio>
 
     <!-- Control Buttons Bar -->
     <div id="control-bar">
