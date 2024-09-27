@@ -451,8 +451,7 @@ input[type="text"]:focus {
 
 /* Responsive design */
 @media (max-width: 768px) {
-  #player-info,
-  #control-bar {
+  #player-info {
     flex-direction: column;
     padding: 2vmin;
   }
