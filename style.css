@@ -93,6 +93,7 @@ h1 {
 .cell {
   position: relative;
   display: flex;
+  cursor: pointer;
 }
 
 .cell-inner {
